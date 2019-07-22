@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const { restricted } = require('../middleware/auth');
 const router = new Router();
 
 router.post('/register', async (req, res) => {
@@ -29,7 +30,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/users', async (req, res) => {
+router.get('/users', restricted, async (req, res) => {
     try {
         const users = await User.get();
         res.status(401).json({ data: users });
