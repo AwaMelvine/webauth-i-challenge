@@ -18,7 +18,6 @@ router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await User.findByUsername(username);
-        console.log(user);
 
         if (user && bcrypt.compareSync(password, user.password)) {
             res.status(201).json({ message: `Welcome, ${user.username}` });
@@ -27,6 +26,15 @@ router.post('/login', async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ error: 'Failed to login' });
+    }
+});
+
+router.get('/users', async (req, res) => {
+    try {
+        const users = await User.get();
+        res.status(401).json({ data: users });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to get users' });
     }
 });
 
