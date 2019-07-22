@@ -5,10 +5,14 @@ module.exports = {
         return db("users");
     },
 
-
     async findById(id) {
-        const users = await db("users").where({ id }).first();
-        return users;
+        const user = await db("users").where({ id }).first();
+        return user;
+    },
+
+    async findByUsername(username) {
+        const user = await db("users").where({ username }).first();
+        return user;
     },
 
     async add(user) {
