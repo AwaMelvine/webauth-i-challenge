@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const KnexSessionStore = require('connect-session-knex')(session)
 const auth = require('./routes/auth');
 const app = express();
 

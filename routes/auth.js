@@ -38,6 +38,17 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get('/logout', restricted, async (req, res) => {
+    if (req.session) {
+        req.session.destroy(err => {
+            if (err) {
+                return res.status(500).json({ error: "You're not going anywhere" });
+            }
+            res.status(200).json({ data: [], message: "You are now logged in" });
+        });
+    }
+});
+
 router.get('/users', restricted, async (req, res) => {
     try {
         const users = await User.get();

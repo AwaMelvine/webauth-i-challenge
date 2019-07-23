@@ -7,7 +7,7 @@ module.exports = {
         if (req.session.user) {
             next();
         } else {
-            return res.status(401).json({ message: 'You must login first' });
+            return res.status(401).json({ message: 'You shall not pass!' });
         }
     }
 }
