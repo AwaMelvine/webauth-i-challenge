@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/logout', restricted, async (req, res) => {
+router.get('/logout', async (req, res) => {
     if (req.session) {
         req.session.destroy(err => {
             if (err) {
